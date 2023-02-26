@@ -1,0 +1,20 @@
+{
+    "name": "opgg plugin for primeleague",
+    "version": "1.0",
+    "description": "opgg scouter for primeleague",
+    "content_scripts": [
+        {
+            "js": [ "teams.js" ],
+            "matches": [ "*://www.primeleague.gg/leagues/teams/*" ]
+        },
+        {
+            "js": [ "matches.js" ],
+            "matches": [ "*://www.primeleague.gg/leagues/matches/*" ]
+        }
+    ],
+    "web_accessible_resources": [
+        "img/opgg.png"
+    ],
+    "manifest_version": 2
+}
+
