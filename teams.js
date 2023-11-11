@@ -1,7 +1,7 @@
 playersDiv = document.getElementsByClassName("content-portrait-grid-l")[0];
 playersDivParent = playersDiv.parentNode;
 
-playersDivParent.insertBefore(createUrlButton(),playersDiv);
+playersDivParent.insertBefore(createUrlButton(), playersDiv);
 
 function createUrlButton() {
     const opggUrlButtonContainer = document.createElement("div");
@@ -24,16 +24,16 @@ function opggUrl() {
     const summonerNames = [];
     const infoDivs = document.getElementsByClassName("txt-info");
 
-    for (let index = 0; index < infoDivs.length; index++) {
-        const childDiv = infoDivs[index].firstElementChild;
+    for (const infoDiv of infoDivs) {
+        const childDiv = infoDiv.firstElementChild;
 
-        if (childDiv == null) {continue;}
+        if (childDiv == null) {
+            continue;
+        }
 
         const title = childDiv.getAttribute("title");
-        if (title != null) {
-            if (title.includes("LoL Summoner Name")) {
-                summonerNames.push(infoDivs[index].firstElementChild.innerText);
-            }
+        if (title != null && title.includes("LoL Summoner Name")) {
+            summonerNames.push(childDiv.innerText);
         }
     }
     let opggUrl = "https://euw.op.gg/multi/query=";

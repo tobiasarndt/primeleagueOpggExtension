@@ -25,9 +25,9 @@ function createLinupButton(lineupDiv) {
 function opggUrl(lineupDiv) {
     const txtDivs = lineupDiv.getElementsByClassName("txt-info");
     const summonerNames = [];
-    for (let i = 0; i < txtDivs.length; i++) {
-        if (txtDivs[i].className == "txt-info") {
-            summonerNames.push(txtDivs[i].innerText);
+    for (const txtDiv of txtDivs) {
+        if (txtDiv.className === "txt-info") {
+            summonerNames.push(txtDiv.innerText);
         }
     }
     let opggUrl = "https://euw.op.gg/multi/query=";
