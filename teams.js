@@ -4,8 +4,8 @@ playersDivParent = playersDiv.parentNode;
 playersDivParent.insertBefore(createUrlButton(),playersDiv);
 
 function createUrlButton() {
-    var opggUrlButtonContainer = document.createElement("div");
-    var opggUrlButton = document.createElement("button");
+    const opggUrlButtonContainer = document.createElement("div");
+    const opggUrlButton = document.createElement("button");
     opggUrlButton.onclick = function () { window.open(opggUrl()) };
     opggUrlButton.style.backgroundImage = `url('${browser.runtime.getURL("img/opgg.png")}'`;
     opggUrlButton.style.backgroundSize = "cover";
@@ -21,22 +21,22 @@ function createUrlButton() {
 }
 
 function opggUrl() {
-    var summonerNames = [];
-    var infoDivs = document.getElementsByClassName("txt-info");
+    const summonerNames = [];
+    const infoDivs = document.getElementsByClassName("txt-info");
 
-    for (var index = 0; index < infoDivs.length; index++) {
-        var childDiv = infoDivs[index].firstElementChild;
+    for (let index = 0; index < infoDivs.length; index++) {
+        const childDiv = infoDivs[index].firstElementChild;
 
         if (childDiv == null) {continue;}
 
-        var title = childDiv.getAttribute("title");
+        const title = childDiv.getAttribute("title");
         if (title != null) {
             if (title.includes("LoL Summoner Name")) {
                 summonerNames.push(infoDivs[index].firstElementChild.innerText);
             }
         }
     }
-    var opggUrl = "https://euw.op.gg/multi/query=";
+    let opggUrl = "https://euw.op.gg/multi/query=";
     summonerNames.forEach(summonerName => {
         opggUrl = opggUrl + "%2C" + summonerName;
     });
