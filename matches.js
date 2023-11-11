@@ -12,7 +12,9 @@ function createLineupLinks() {
 
 function createLinupButton(lineupDiv) {
     const opggUrlButton = document.createElement("button");
-    opggUrlButton.onclick = function () { window.open(opggUrl(lineupDiv)) };
+    const summonerNames = getSummonerNames(lineupDiv);
+    const url = opggUrl(summonerNames);
+    opggUrlButton.onclick = function () { window.open(url) };
     opggUrlButton.style.backgroundImage = `url('${browser.runtime.getURL("img/opgg.png")}'`;
     opggUrlButton.style.backgroundSize = "cover";
     opggUrlButton.style.minHeight = 0;
@@ -24,21 +26,29 @@ function createLinupButton(lineupDiv) {
     return opggUrlButton;
 }
 
-function opggUrl(lineupDiv) {
-    const txtDivs = lineupDiv.getElementsByClassName("txt-info");
+function getSummonerNames(lineupDiv) {
     const summonerNames = [];
+    const txtDivs = lineupDiv.getElementsByClassName('txt-info');
+
     for (const txtDiv of txtDivs) {
-        if (txtDiv.className === "txt-info") {
+        if (txtDiv.className === 'txt-info') {
             summonerNames.push(txtDiv.innerText);
         }
     }
-    let opggUrl = "https://euw.op.gg/multi/query=";
-    summonerNames.forEach(summonerName => {
-        opggUrl = opggUrl + "%2C" + summonerName;
-    });
 
-    return opggUrl
+    return summonerNames;
 }
+
+function opggUrl(summonerNames) {
+    const opggBaseUrl = 'https://www.op.gg/multisearch/euw?summoners=';
+    const encodedSummonerNames = summonerNames.map((summonerName) => encodeURIComponent(summonerName));
+    const summonerNameString = encodedSummonerNames.join(encodeURIComponent(','));
+
+    const url = opggBaseUrl.concat(summonerNameString);
+
+    return url;
+}
+
 
 function waitForElm(selector) {
     return new Promise((resolve) => {
@@ -55,8 +65,7 @@ function waitForElm(selector) {
 
         observer.observe(document.body, {
             childList: true,
-            subtree: true,
-            
+            subtree: true
         });
     });
 }
