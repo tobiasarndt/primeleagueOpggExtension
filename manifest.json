@@ -12,9 +12,6 @@
             "matches": [ "*://www.primeleague.gg/leagues/matches/*" ]
         }
     ],
-    "web_accessible_resources": [
-        "img/opgg.png"
-    ],
     "manifest_version": 2
 }
 

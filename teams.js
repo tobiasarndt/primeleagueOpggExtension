@@ -1,25 +1,21 @@
 playersDiv = document.getElementsByClassName("content-portrait-grid-l")[0];
 playersDivParent = playersDiv.parentNode;
 
-playersDivParent.insertBefore(createUrlButton(), playersDiv);
+playersDivParent.insertBefore(createUrlLink(), playersDiv);
 
-function createUrlButton() {
-    const opggUrlButtonContainer = document.createElement("div");
-    const opggUrlButton = document.createElement("button");
+function createUrlLink() {
+    const opggUrlLinkContainer = document.createElement('div');
+    const opggUrlLink = document.createElement('a');
+
     const summonerNames = getSummonerNames();
     const url = opggUrl(summonerNames);
-    opggUrlButton.onclick = function () { window.open(url) };
-    opggUrlButton.style.backgroundImage = `url('${browser.runtime.getURL("img/opgg.png")}'`;
-    opggUrlButton.style.backgroundSize = "cover";
-    opggUrlButton.style.minHeight = 0;
-    opggUrlButton.style.width = "50px";
-    opggUrlButton.style.height = "12px";
-    opggUrlButton.style.border = "none";
-    opggUrlButton.style.cursor = "pointer";
 
-    opggUrlButtonContainer.appendChild(opggUrlButton);
+    opggUrlLink.setAttribute('href', url);
+    opggUrlLink.innerHTML = 'OP.GG';
 
-    return opggUrlButtonContainer;
+    opggUrlLinkContainer.appendChild(opggUrlLink);
+
+    return opggUrlLinkContainer;
 }
 
 function getSummonerNames() {

@@ -6,24 +6,24 @@ function createLineupLinks() {
     const lineupDivs = document.getElementsByClassName("content-match-lineup");
 
     const teamTitleDivs = document.getElementsByClassName("content-match-head-team-titles");
-    teamTitleDivs[0].appendChild(createLinupButton(lineupDivs[0]));
-    teamTitleDivs[1].appendChild(createLinupButton(lineupDivs[1]));
+    teamTitleDivs[0].appendChild(createUrlLink(lineupDivs[0]));
+    teamTitleDivs[1].appendChild(createUrlLink(lineupDivs[1]));
 }
 
-function createLinupButton(lineupDiv) {
-    const opggUrlButton = document.createElement("button");
+function createUrlLink(lineupDiv) {
+    const opggUrlLinkContainer = document.createElement('div');
+    opggUrlLinkContainer.className = 'txt-subtitle';
+
+    const opggUrlLink = document.createElement('a');
     const summonerNames = getSummonerNames(lineupDiv);
     const url = opggUrl(summonerNames);
-    opggUrlButton.onclick = function () { window.open(url) };
-    opggUrlButton.style.backgroundImage = `url('${browser.runtime.getURL("img/opgg.png")}'`;
-    opggUrlButton.style.backgroundSize = "cover";
-    opggUrlButton.style.minHeight = 0;
-    opggUrlButton.style.width = "50px";
-    opggUrlButton.style.height = "12px";
-    opggUrlButton.style.border = "none";
-    opggUrlButton.style.cursor = "pointer";
 
-    return opggUrlButton;
+    opggUrlLink.setAttribute('href', url);
+    opggUrlLink.innerHTML = 'OP.GG';
+
+    opggUrlLinkContainer.appendChild(opggUrlLink);
+
+    return opggUrlLinkContainer;
 }
 
 function getSummonerNames(lineupDiv) {
