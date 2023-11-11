@@ -1,10 +1,9 @@
-playersDiv = document.getElementsByClassName("content-portrait-grid-l")[0];
-playersDivParent = playersDiv.parentNode;
+const playersDiv = document.getElementsByClassName('content-portrait-grid-l')[0];
+const playersDivParent = playersDiv.parentNode;
 
 playersDivParent.insertBefore(createUrlLink(), playersDiv);
 
 function createUrlLink() {
-    const opggUrlLinkContainer = document.createElement('div');
     const opggUrlLink = document.createElement('a');
 
     const summonerNames = getSummonerNames();
@@ -13,9 +12,7 @@ function createUrlLink() {
     opggUrlLink.setAttribute('href', url);
     opggUrlLink.innerHTML = 'OP.GG';
 
-    opggUrlLinkContainer.appendChild(opggUrlLink);
-
-    return opggUrlLinkContainer;
+    return opggUrlLink;
 }
 
 function getSummonerNames() {

@@ -3,9 +3,9 @@ waitForElm('.content-match-lineup .txt-info').then(() => {
 });
 
 function createLineupLinks() {
-    const lineupDivs = document.getElementsByClassName("content-match-lineup");
+    const lineupDivs = document.getElementsByClassName('content-match-lineup');
 
-    const teamTitleDivs = document.getElementsByClassName("content-match-head-team-titles");
+    const teamTitleDivs = document.getElementsByClassName('content-match-head-team-titles');
     teamTitleDivs[0].appendChild(createUrlLink(lineupDivs[0]));
     teamTitleDivs[1].appendChild(createUrlLink(lineupDivs[1]));
 }
