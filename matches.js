@@ -16,6 +16,10 @@ function createUrlLink(lineupDiv) {
 
     const opggUrlLink = document.createElement('a');
     const summonerNames = getSummonerNames(lineupDiv);
+
+    if (summonerNames.length === 0) { 
+        return opggUrlLinkContainer;
+    }
     const url = createOpggUrl(summonerNames);
 
     opggUrlLink.setAttribute('href', url);
