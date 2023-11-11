@@ -16,7 +16,7 @@ function createUrlLink(lineupDiv) {
 
     const opggUrlLink = document.createElement('a');
     const summonerNames = getSummonerNames(lineupDiv);
-    const url = opggUrl(summonerNames);
+    const url = createOpggUrl(summonerNames);
 
     opggUrlLink.setAttribute('href', url);
     opggUrlLink.innerHTML = 'OP.GG';
@@ -39,7 +39,7 @@ function getSummonerNames(lineupDiv) {
     return summonerNames;
 }
 
-function opggUrl(summonerNames) {
+function createOpggUrl(summonerNames) {
     const opggBaseUrl = 'https://www.op.gg/multisearch/euw?summoners=';
     const encodedSummonerNames = summonerNames.map((summonerName) => encodeURIComponent(summonerName));
     const summonerNameString = encodedSummonerNames.join(encodeURIComponent(','));
