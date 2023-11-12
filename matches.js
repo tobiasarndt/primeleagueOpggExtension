@@ -34,7 +34,7 @@ function getSummonerNames(lineupDiv) {
     const summonerNames = [];
     const txtDivs = lineupDiv.getElementsByClassName('txt-info');
 
-    for (const txtDiv of txtDivs) {
+    for (let txtDiv of txtDivs) {
         if (txtDiv.className === 'txt-info') {
             summonerNames.push(txtDiv.innerText);
         }

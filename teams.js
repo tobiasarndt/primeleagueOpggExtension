@@ -19,7 +19,7 @@ function getSummonerNames() {
     const summonerNames = [];
     const infoDivs = document.getElementsByClassName('txt-info');
 
-    for (const infoDiv of infoDivs) {
+    for (let infoDiv of infoDivs) {
         const childDiv = infoDiv.firstElementChild;
 
         if (childDiv === null) {
