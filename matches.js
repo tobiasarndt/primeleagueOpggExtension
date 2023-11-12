@@ -45,8 +45,7 @@ function getSummonerNames(lineupDiv) {
 
 function createOpggUrl(summonerNames) {
     const opggBaseUrl = 'https://www.op.gg/multisearch/euw?summoners=';
-    const encodedSummonerNames = summonerNames.map((summonerName) => encodeURIComponent(summonerName));
-    const summonerNameString = encodedSummonerNames.join(encodeURIComponent(','));
+    const summonerNameString = encodeURIComponent(summonerNames.join(','));
 
     const url = opggBaseUrl.concat(summonerNameString);
 
