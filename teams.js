@@ -1,45 +1,44 @@
-playersDiv = document.getElementsByClassName("content-portrait-grid-l")[0];
-playersDivParent = playersDiv.parentNode;
+const playersDiv = document.getElementsByClassName('content-portrait-grid-l')[0];
+const playersDivParent = playersDiv.parentNode;
 
-playersDivParent.insertBefore(createUrlButton(),playersDiv);
+playersDivParent.insertBefore(createUrlLink(), playersDiv);
 
-function createUrlButton() {
-    var opggUrlButtonContainer = document.createElement("div");
-    var opggUrlButton = document.createElement("button");
-    opggUrlButton.onclick = function () { window.open(opggUrl()) };
-    opggUrlButton.style.backgroundImage = `url('${browser.runtime.getURL("img/opgg.png")}'`;
-    opggUrlButton.style.backgroundSize = "cover";
-    opggUrlButton.style.minHeight = 0;
-    opggUrlButton.style.width = "50px";
-    opggUrlButton.style.height = "12px";
-    opggUrlButton.style.border = "none";
-    opggUrlButton.style.cursor = "pointer";
+function createUrlLink() {
+    const opggUrlLink = document.createElement('a');
 
-    opggUrlButtonContainer.appendChild(opggUrlButton);
+    const summonerNames = getSummonerNames();
+    const url = createOpggUrl(summonerNames);
 
-    return opggUrlButtonContainer;
+    opggUrlLink.setAttribute('href', url);
+    opggUrlLink.innerHTML = 'OP.GG';
+
+    return opggUrlLink;
 }
 
-function opggUrl() {
-    var summonerNames = [];
-    var infoDivs = document.getElementsByClassName("txt-info");
+function getSummonerNames() {
+    const summonerNames = [];
+    const infoDivs = document.getElementsByClassName('txt-info');
 
-    for (var index = 0; index < infoDivs.length; index++) {
-        var childDiv = infoDivs[index].firstElementChild;
+    for (let infoDiv of infoDivs) {
+        const childDiv = infoDiv.firstElementChild;
 
-        if (childDiv == null) {continue;}
+        if (childDiv === null) {
+            continue;
+        }
 
-        var title = childDiv.getAttribute("title");
-        if (title != null) {
-            if (title.includes("LoL Summoner Name")) {
-                summonerNames.push(infoDivs[index].firstElementChild.innerText);
-            }
+        const title = childDiv.getAttribute('title');
+
+        if (title?.includes('LoL Summoner Name')) {
+            summonerNames.push(childDiv.innerText);
         }
     }
-    var opggUrl = "https://euw.op.gg/multi/query=";
-    summonerNames.forEach(summonerName => {
-        opggUrl = opggUrl + "%2C" + summonerName;
-    });
 
-    return opggUrl;
+    return summonerNames;
+}
+
+function createOpggUrl(summonerNames) {
+    const opggBaseUrl = 'https://www.op.gg/multisearch/euw?summoners=';
+    const summonerNameString = encodeURIComponent(summonerNames.join(','));
+
+    return opggBaseUrl.concat(summonerNameString);
 }

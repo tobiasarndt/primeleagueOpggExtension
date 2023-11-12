@@ -1,6 +1,6 @@
 {
     "name": "opgg plugin for primeleague",
-    "version": "1.1",
+    "version": "2.0",
     "description": "opgg scouter for primeleague",
     "content_scripts": [
         {
@@ -12,9 +12,5 @@
             "matches": [ "*://www.primeleague.gg/leagues/matches/*" ]
         }
     ],
-    "web_accessible_resources": [
-        "img/opgg.png"
-    ],
     "manifest_version": 2
 }
-
