@@ -28,7 +28,7 @@ function getSummonerNames() {
 
         const title = childDiv.getAttribute('title');
 
-        if (title !== null && title.includes('LoL Summoner Name')) {
+        if (title?.includes('LoL Summoner Name')) {
             summonerNames.push(childDiv.innerText);
         }
     }
