@@ -5,11 +5,11 @@
     "content_scripts": [
         {
             "js": [ "teams.js" ],
-            "matches": [ "*://www.primeleague.gg/leagues/teams/*" ]
+            "matches": [ "*://www.primeleague.gg/*/leagues/prm/*/teams/*" ]
         },
         {
             "js": [ "matches.js" ],
-            "matches": [ "*://www.primeleague.gg/leagues/matches/*" ]
+            "matches": [ "*://www.primeleague.gg/*/leagues/matches/*" ]
         }
     ],
     "manifest_version": 2
